@@ -8,6 +8,7 @@ import java.io._
 import java.util.Scanner
 import java.lang.StringBuilder
 
+/* This code was adapted from the Akka documentation. */
 
 object WebServer {
 
@@ -19,25 +20,23 @@ object WebServer {
 
     while (true) {
 
-    	println("Hey betch, enter a file name or press Q to quit: ")		
+    	println("Hey betch, enter a file name:")		
 		
 		val input = StdIn.readLine()
 
-		if (input.equals("Q") || input.equals("q")) {
-			System.exit(0)
-		}
-
 		val html = string_to_file(input)
 		println(html)			
-			
-		val route = path("hello") {
+		
+		val path_suffix = "demo"
+
+		val route = path(path_suffix) {
     		get {
       			complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, html))
     		}
   		}
   		val bindingFuture = Http().bindAndHandle(route, "localhost", 8000)
 	
-  		println(s"Server online at http://localhost:8000/")
+  		println("Server online at http://localhost:8000/" + path_suffix)
 
   		StdIn.readLine()
     }    
