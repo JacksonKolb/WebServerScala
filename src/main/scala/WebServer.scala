@@ -1,60 +1,59 @@
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
+import akka.http.scaladsl.model.HttpMethods._
 import akka.http.scaladsl.model._
-import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
 import scala.io.StdIn
 import java.io._
 import java.util.Scanner
-import java.lang.StringBuilder
-
-/* This code was adapted from the Akka documentation. */
 
 object WebServer {
 
-  def main(args: Array[String]) {
+	def main(args: Array[String]) {
+	implicit val system = ActorSystem()
+	implicit val materializer = ActorMaterializer()
+	implicit val executionContext = system.dispatcher
 
-    implicit val system = ActorSystem("datboi")
-    implicit val materializer = ActorMaterializer()
-    implicit val executionContext = system.dispatcher
+	val html = configure_file()
 
-    while (true) {
+	val requestHandler: HttpRequest => HttpResponse = {
+		case HttpRequest(GET, Uri.Path("/"), _, _, _) =>
+		HttpResponse(entity = HttpEntity(
+			ContentTypes.`text/html(UTF-8)`,
+			html))
 
-    	println("Hey betch, enter a file name:")		
-		
-		val input = StdIn.readLine()
+		case HttpRequest(GET, Uri.Path("/ping"), _, _, _) =>
+		HttpResponse(entity = "PONG!")
 
-		val html = string_to_file(input)
-		println(html)			
-		
-		val path_suffix = "demo"
+		case HttpRequest(GET, Uri.Path("/crash"), _, _, _) =>
+		sys.error("BOOM!")
 
-		val route = path(path_suffix) {
-    		get {
-      			complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, html))
-    		}
-  		}
-  		val bindingFuture = Http().bindAndHandle(route, "localhost", 8000)
-	
-  		println("Server online at http://localhost:8000/" + path_suffix)
+		case r: HttpRequest =>
+		r.discardEntityBytes() // important to drain incoming HTTP Entity stream
+		HttpResponse(404, entity = "Unknown resource!")
+	}
 
-  		StdIn.readLine()
-    }    
-  }
+	val bindingFuture = Http().bindAndHandleSync(requestHandler, "localhost", 8080)
+	println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
+	StdIn.readLine() // let it run until user presses return
+	bindingFuture
+		.flatMap(_.unbind()) // trigger unbinding from the port
+		.onComplete(_ => system.terminate()) // and shutdown when done
 
+	}
 
-  def string_to_file(file_name: String): String = {
+	def configure_file(): String = {
 
-  	val path = "C:\\Users\\drewe\\Desktop\\ScalaServer\\src\\main\\scala\\" + file_name
-  	var file = new File("")
+  	val path = "/Users/jackkolb/schoolspace/Spring 2019/CS-390V Functional Programming/WebServerScala/src/main/scala/"
+	var file = new File("")
 
   	try {
-  		file = new File(path)
+  		file = new File( path + "basic_html.html")
   	}
   	catch  {
   		case e: Exception => println("File not found: " + path)
   	}
-  	
+
   	val scanner = new Scanner(file)
   	val builder = new StringBuilder()
 
@@ -63,5 +62,5 @@ object WebServer {
   	}
 
   	return builder.toString()
-  }
+}
 }

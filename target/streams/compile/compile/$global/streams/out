@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\drewe\Desktop\ScalaServer\src\main\scala\HtmlServer.scala:59:10: reassignment to val[0m
-[0m[[0m[31merror[0m] [0m[0m  		html = html + scanner.Next().ToString()[0m
-[0m[[0m[31merror[0m] [0m[0m  		     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jackkolb/schoolspace/Spring 2019/CS-390V Functional Programming/WebServerScala/src/main/scala/WebServer.scala:56:30: not found: value file[0m
+[0m[[0m[31merror[0m] [0m[0m  	val scanner = new Scanner(file)[0m
+[0m[[0m[31merror[0m] [0m[0m  	                          ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m
