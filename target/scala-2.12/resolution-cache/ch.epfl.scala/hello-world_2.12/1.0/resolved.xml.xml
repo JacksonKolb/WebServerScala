@@ -4,7 +4,7 @@
 		module="hello-world_2.12"
 		revision="1.0"
 		status="integration"
-		publication="20190331145856"
+		publication="20190331185459"
 	>
 		<description>
 		hello-world
@@ -39,5 +39,7 @@
 		<dependency org="org.scala-lang.modules" name="scala-xml_2.12" rev="1.1.1" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-http_2.12" rev="10.1.7" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-stream_2.12" rev="2.5.19" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-stream-testkit_2.12" rev="2.5.19" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-http-testkit_2.12" rev="10.1.8" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

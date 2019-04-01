@@ -1,4 +1,11 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/jackkolb/schoolspace/Spring 2019/CS-390V Functional Programming/WebServerScala/src/main/scala/WebServer.scala:56:30: not found: value file[0m
-[0m[[0m[31merror[0m] [0m[0m  	val scanner = new Scanner(file)[0m
-[0m[[0m[31merror[0m] [0m[0m  	                          ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jackkolb/schoolspace/Spring 2019/CS-390V Functional Programming/WebServerScala/src/main/scala/WebServer.scala:31:9: not enough arguments for method path: (pm: akka.http.scaladsl.server.PathMatcher[L])akka.http.scaladsl.server.Directive[L].[0m
+[0m[[0m[31merror[0m] [0m[0mUnspecified value parameter pm.[0m
+[0m[[0m[31merror[0m] [0m[0m		  path() {[0m
+[0m[[0m[31merror[0m] [0m[0m		      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jackkolb/schoolspace/Spring 2019/CS-390V Functional Programming/WebServerScala/src/main/scala/WebServer.scala:32:13: not found: value HttpResponse[0m
+[0m[[0m[31merror[0m] [0m[0m			complete(HttpResponse(404, entity = "Unknown resource!"))[0m
+[0m[[0m[31merror[0m] [0m[0m			         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/jackkolb/schoolspace/Spring 2019/CS-390V Functional Programming/WebServerScala/src/main/scala/WebServer.scala:32:38: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m			complete(HttpResponse(404, entity = "Unknown resource!"))[0m
+[0m[[0m[31merror[0m] [0m[0m			                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m

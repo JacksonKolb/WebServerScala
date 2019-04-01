@@ -28,8 +28,10 @@ libraryDependencies += "org.scalatest" % "scalatest_2.12" % "3.0.5" % "test"
 libraryDependencies += "org.scalamock" %% "scalamock" % "4.1.0" % "test"
 libraryDependencies += "org.markushauck" %% "mockitoscala" % "0.3.0"
 libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "1.1.1"
-libraryDependencies += "com.typesafe.akka" %% "akka-http"   % "10.1.7" 
+libraryDependencies += "com.typesafe.akka" %% "akka-http"   % "10.1.7"
 libraryDependencies += "com.typesafe.akka" %% "akka-stream" % "2.5.19"
+libraryDependencies += "com.typesafe.akka" %% "akka-stream-testkit" % "2.5.19"
+libraryDependencies += "com.typesafe.akka" %% "akka-http-testkit" % "10.1.8"
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,
 // we're adding the cats dependency to the set of dependencies that sbt will go
 // and fetch when it starts up.
